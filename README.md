@@ -1,4 +1,4 @@
 TowerDefense
 ============
 
-Tower Defense in java
+Tower Defense written in java

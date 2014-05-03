@@ -1,7 +1,6 @@
 TowerDefense
 ============
 
-Tower Defense written in java. Last commit is setup for Linux
+Tower Defense written in java. 
 
-To change this: http://slick.ninjacave.com/wiki/index.php?title=Setting_up_Slick2D_with_Eclipse
-
+Irgendwie bin ich zu blöd die Lwjgl und slick jar zu pushen. Daraus folgt jeder muss sich seinen Workspace selbst erstellen.S

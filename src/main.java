@@ -1,3 +1,4 @@
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.SlickException;
@@ -39,6 +40,7 @@ public class main extends StateBasedGame {
 			appgc = new AppGameContainer(new main("Tower Defense -v "+VERSION));
 			appgc.setTargetFrameRate(FPS);
 			appgc.setDisplayMode(screenWidth, screenHeight, false);
+			Display.setInitialBackground(255, 255, 255);
 			appgc.start();
 		} catch (SlickException e) {
 			Log.error(e.toString());

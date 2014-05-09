@@ -30,11 +30,11 @@ public class SplashScreen extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		// TODO Auto-generated method stub
-//		if(time < 6 * 1000) { //multiply by 1000 to get milliseconds
-//	        time += delta;
-//	    }else{
+		if(time < 6 * 1000) { //multiply by 1000 to get milliseconds
+	        time += delta;
+	    }else{
 	    	sbg.enterState(main.MAINMENU);
-	    //}
+	    }
 	}
 
 	@Override

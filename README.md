@@ -1,5 +1,8 @@
 TowerDefense
 ============
+Die zwei Branches Master und Slick gemergt und Slick gelöscht.
+
+Ich würde sagen wir schreiben neuste infos zum gesamten immer nach ganz oben!!
 
 Tower Defense written in java. 
 

@@ -27,9 +27,11 @@ public class Game extends BasicGameState {
 	private int x, y;
 	int c;
 	private map map;
+	private game_interface game_interface;
 
 	public void init(GameContainer arg0, StateBasedGame arg1)throws SlickException {
 			map = new map(4,8);
+			game_interface = new game_interface();
 		
 	}
 
@@ -38,6 +40,7 @@ public class Game extends BasicGameState {
 		g.drawString("x Koordinate: " + x, 10, 20);
 		g.drawString("y Koordinate: " + y, 10, 30);
 		map.drawmap(100);
+		game_interface.render_interface(g);
 		g.setBackground(Color.white);
 	}
 

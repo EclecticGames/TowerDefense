@@ -1,10 +1,10 @@
 
-public class mob {//super Klasse für die Mobs
+public class Mob {//super Klasse für die Mobs
 
 	private double life;
 	private double speed;
 	
-	public mob(double life, double speed){
+	public Mob(double life, double speed){
 		this.life = life;
 		this.speed = speed;
 	}

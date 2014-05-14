@@ -1,5 +1,5 @@
 
-public class tower {//super Klasse für die Tower
+public class Tower {//super Klasse für die Tower
 
 	private double damage;
 	private double price;
@@ -7,7 +7,7 @@ public class tower {//super Klasse für die Tower
 	private double range;//Angriffsreichweite
 	private double speed; //Angriffsgeschwindigkeit
 	
-	public tower(double damage, double costs, double range, double speed){
+	public Tower(double damage, double costs, double range, double speed){
 		this.setDamage(damage);
 		this.setCosts(costs);
 		this.setPrice((costs/2));

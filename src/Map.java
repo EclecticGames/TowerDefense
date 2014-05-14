@@ -9,14 +9,14 @@ import org.newdawn.slick.util.pathfinding.PathFindingContext;
 import org.newdawn.slick.util.pathfinding.TileBasedMap;
 
 
-public class map implements TileBasedMap {
+public class Map implements TileBasedMap {
 
 	Image gras;
 	private String [][] map;
 	int x;
 	int y;
 	
-	public map(int mapsizeY, int mapsizeX){
+	public Map(int mapsizeY, int mapsizeX){
 		x = mapsizeY;
 		y = mapsizeX;
 		try {

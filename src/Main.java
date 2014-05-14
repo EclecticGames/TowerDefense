@@ -5,7 +5,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.util.Log;
 
-public class main extends StateBasedGame {
+public class Main extends StateBasedGame {
 
 	public static AppGameContainer appgc;
 
@@ -20,7 +20,7 @@ public class main extends StateBasedGame {
     public static final int GAME         = 2;
 
 
-	public main(String name) {
+	public Main(String name) {
 		super(name);
 	}
 
@@ -37,7 +37,7 @@ public class main extends StateBasedGame {
 	public static void main(String[] args) throws SlickException {
 		try {
 			// window wich hold game
-			appgc = new AppGameContainer(new main("Tower Defense -v "+VERSION));
+			appgc = new AppGameContainer(new Main("Tower Defense -v "+VERSION));
 			appgc.setTargetFrameRate(FPS);
 			appgc.setDisplayMode(screenWidth, screenHeight, false);
 			Display.setInitialBackground(255, 255, 255);

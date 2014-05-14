@@ -33,7 +33,7 @@ public class SplashScreen extends BasicGameState {
 		if(time < 6 * 1000) { //multiply by 1000 to get milliseconds
 	        time += delta;
 	    }else{
-	    	sbg.enterState(main.MAINMENU);
+	    	sbg.enterState(Main.MAINMENU);
 	    }
 	}
 

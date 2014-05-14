@@ -26,12 +26,12 @@ public class Game extends BasicGameState {
 
 	private int x, y;
 	int c;
-	private map map;
-	private game_interface game_interface;
+	private Map map;
+	private Game_Interface game_interface;
 
 	public void init(GameContainer arg0, StateBasedGame arg1)throws SlickException {
-			map = new map(4,8);
-			game_interface = new game_interface();
+			map = new Map(4,8);
+			game_interface = new Game_Interface();
 		
 	}
 

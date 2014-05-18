@@ -13,27 +13,25 @@ public class Map implements TileBasedMap {
 
 	Image gras;
 	private String [][] map;
-	int x;
-	int y;
+	int width;
+	int height;
 	
 	public Map(int mapsizeY, int mapsizeX){
-		x = mapsizeY;
-		y = mapsizeX;
+		height = mapsizeY;
+		width = mapsizeX;
 		try {
 			gras = new Image("ressources/images/gras.png");
-			map = new String[x][y];
+			map = new String[width][height];
 			FileReader file = new FileReader("ressources/maps/map.map");
 			BufferedReader br = new BufferedReader(file);
 			String line = br.readLine();
 			int row = 0;
-			while(line != null && row < x)
+			while(line != null && row < height)
 			{
 				map[row] = line.split("\t");
 				line = br.readLine();
 				row++;
-				System.out.println(row);
 			}
-		
 			
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
@@ -49,8 +47,8 @@ public class Map implements TileBasedMap {
 	
 	
 	public void drawmap(int blocksize){
-		for (int i = 0; i < x; i++) {
-			for (int j = 0; j < y; j++) {
+		for (int i = 0; i < height; i++) {//durchläuft von oben links nach oben rechts, dann eine zeile tiefer
+			for (int j = 0; j < width; j++) {
 				if(map[i][j].equals("0")){
 					gras.draw(j*blocksize,i*blocksize);
 				}
@@ -59,33 +57,33 @@ public class Map implements TileBasedMap {
 		
 	}
 	
-	@Override
-	public boolean blocked(PathFindingContext arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean blocked(PathFindingContext context, int x, int y) {
+		boolean blocked = false;
+		if(Integer.parseInt(map[y][x]) == 1){
+			blocked = true;
+		}
+		return blocked;
 	}
 
 	@Override
-	public float getCost(PathFindingContext arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
-		return 0;
+	public float getCost(PathFindingContext context, int x, int y) {
+		return 1;
 	}
 
 	@Override
 	public int getHeightInTiles() {
-		// TODO Auto-generated method stub
-		return 0;
+		return height;
 	}
 
 	@Override
 	public int getWidthInTiles() {
-		// TODO Auto-generated method stub
-		return 0;
+		return width;
 	}
 
 	@Override
-	public void pathFinderVisited(int arg0, int arg1) {
-		// TODO Auto-generated method stub
+	public void pathFinderVisited(int x, int y) {
+//		ist zum debuggen
+		//System.out.println("pathfinder visited tile x:"+x+" , y:"+y);
 	}
 
 }

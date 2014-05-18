@@ -28,18 +28,20 @@ public class Game extends BasicGameState {
 	int c;
 	private Map map;
 	private Game_Interface game_interface;
+	PathFinder finder;
 
-	public void init(GameContainer arg0, StateBasedGame arg1)throws SlickException {
-			map = new Map(4,8);
-			game_interface = new Game_Interface();
-		
+	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
+		map = new Map(4, 8);
+		game_interface = new Game_Interface();
+		finder = new PathFinder(); //auskommentieren wenn nicht benutzt wird, genau wie deklaration
+		//wenn jemand anderen pfad testen will, muss er im konstruktor die start und end parameter austauschen
 	}
 
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
-			throws SlickException {
+	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
 		g.drawString("x Koordinate: " + x, 10, 20);
 		g.drawString("y Koordinate: " + y, 10, 30);
-		map.drawmap(100);
+//		map.drawmap(100);
+		finder.testmap.drawmap(100); //zum testen des pathfinders, für weiterentwicklung einfach kommentar tauschen
 		game_interface.render_interface(g);
 		g.setBackground(Color.white);
 	}

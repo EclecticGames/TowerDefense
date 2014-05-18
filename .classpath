@@ -18,6 +18,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jars/mail.jar"/>
 	<classpathentry kind="lib" path="lib/jars/mysql-connector-java-5.1.23-bin.jar"/>
-	<classpathentry kind="lib" path="lib/jars/slick.jar"/>
+	<classpathentry kind="lib" path="lib/jars/slick.jar" sourcepath="slickJavaSrc/src"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

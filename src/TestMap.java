@@ -87,7 +87,7 @@ public class TestMap implements TileBasedMap {
 	@Override
 	public void pathFinderVisited(int x, int y) {
 //		ist zum debuggen
-		//System.out.println("pathfinder visited tile x:"+x+" , y:"+y);
+		//Game.log.info("pathfinder visited tile x:"+x+" , y:"+y);
 	}
 
 }

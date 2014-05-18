@@ -5,12 +5,14 @@ import java.io.IOException;
 
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.util.pathfinding.Path;
 import org.newdawn.slick.util.pathfinding.PathFindingContext;
 import org.newdawn.slick.util.pathfinding.TileBasedMap;
 
 
 public class Map implements TileBasedMap {
 
+	Image visited;//nur vorrübergehend
 	Image gras;
 	private String [][] map;
 	int width;
@@ -21,6 +23,7 @@ public class Map implements TileBasedMap {
 		width = mapsizeX;
 		try {
 			gras = new Image("ressources/images/gras.png");
+			visited = new Image("ressources/images/visited.png");
 			map = new String[width][height];
 			FileReader file = new FileReader("ressources/maps/map.map");
 			BufferedReader br = new BufferedReader(file);
@@ -51,11 +54,27 @@ public class Map implements TileBasedMap {
 			for (int j = 0; j < width; j++) {
 				if(map[i][j].equals("0")){
 					gras.draw(j*blocksize,i*blocksize);
+				}else if(map[i][j].equals("2")){
+					visited.draw(j*blocksize,i*blocksize);
 				}
 			}
 		}
 		
 	}
+	//#########################################################################################################
+	/**
+	 * trägt die koordinaten des pfades ein, ist nur zum demonstrieren am anfang, soll später raus
+	 * die Methoder ersetzt einfach Bilder durch andere, da wo der Pfad langgeht
+	 */
+	public void paintPath(Path path){
+        for(int i = 0; i < path.getLength(); i++) {
+        	int x = path.getX(i);
+        	int y = path.getY(i);
+        	map[y][x] = "2";
+            Game.log.info("Move to: x" + x + ", y" + y + ".");
+        }
+	}
+	//#########################################################################################################
 	
 	public boolean blocked(PathFindingContext context, int x, int y) {
 		boolean blocked = false;
@@ -83,7 +102,7 @@ public class Map implements TileBasedMap {
 	@Override
 	public void pathFinderVisited(int x, int y) {
 //		ist zum debuggen
-		//System.out.println("pathfinder visited tile x:"+x+" , y:"+y);
+		//Game.log.info("pathfinder visited tile x:"+x+" , y:"+y);
 	}
 
 }

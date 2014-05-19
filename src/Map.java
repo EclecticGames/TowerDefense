@@ -11,16 +11,24 @@ import org.newdawn.slick.util.pathfinding.TileBasedMap;
 
 
 public class Map implements TileBasedMap {
-
+	
+	private PathFinder finder;
+	private Path path;
+	
 	Image visited;//nur vorrübergehend
 	Image gras;
 	private String [][] map;
-	int width;
-	int height;
+	private int width;
+	private int height;
+	private final int blocksize;
+	private final int maxPathLength = 100;
 	
-	public Map(int mapsizeY, int mapsizeX){
-		height = mapsizeY;
-		width = mapsizeX;
+	public Map(int mapsizeY, int mapsizeX, int blocksize){
+		finder = new PathFinder(this, maxPathLength);
+		
+		this.blocksize = blocksize;
+		this.height = mapsizeY;
+		this.width = mapsizeX;
 		try {
 			gras = new Image("ressources/images/gras.png");
 			visited = new Image("ressources/images/visited.png");
@@ -49,7 +57,7 @@ public class Map implements TileBasedMap {
 	}
 	
 	
-	public void drawmap(int blocksize){
+	public void drawmap(){
 		for (int i = 0; i < height; i++) {//durchläuft von oben links nach oben rechts, dann eine zeile tiefer
 			for (int j = 0; j < width; j++) {
 				if(map[i][j].equals("0")){
@@ -61,7 +69,7 @@ public class Map implements TileBasedMap {
 		}
 		
 	}
-	//#########################################################################################################
+//	//#########################################################################################################
 	/**
 	 * trägt die koordinaten des pfades ein, ist nur zum demonstrieren am anfang, soll später raus
 	 * die Methoder ersetzt einfach Bilder durch andere, da wo der Pfad langgeht
@@ -74,7 +82,7 @@ public class Map implements TileBasedMap {
             Game.log.info("Move to: x" + x + ", y" + y + ".");
         }
 	}
-	//#########################################################################################################
+//	//#########################################################################################################
 	
 	public boolean blocked(PathFindingContext context, int x, int y) {
 		boolean blocked = false;
@@ -105,4 +113,30 @@ public class Map implements TileBasedMap {
 		//Game.log.info("pathfinder visited tile x:"+x+" , y:"+y);
 	}
 
+	/**
+	 * 
+	 * @param sx startX Coordinate
+	 * @param sy startY Coordinate
+	 * @param tx targetX Coordinate
+	 * @param ty targetY Coordinate
+	 * @return the Path that was found. If there is no Path an exception is thrown
+	 * @throws Exception can throw exceptino if no path is found
+	 */
+	public Path findPath(int sx, int sy, int tx, int ty) throws Exception{ 
+		if(finder.findPath(sx, sy, tx, ty)){ //wenn ein pfad gefunden wurde
+			path = finder.getPath();
+		}
+		if(path == null){
+			throw new Exception("No path was found.");
+		}
+		return path;
+	}
+	
+	/**
+	 * 
+	 * @return Returns the path of the Pathfinder
+	 */
+	public Path getPath(){
+		return path;
+	}
 }

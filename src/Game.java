@@ -16,6 +16,8 @@ public class Game extends BasicGameState {
 	int c;
 	private Map map;
 	private Game_Interface game_interface;
+	
+	private Button startGame;
 
 	public void init(GameContainer arg0, StateBasedGame arg1) throws SlickException {
 		map = new Map(4, 8, 100);
@@ -26,6 +28,7 @@ public class Game extends BasicGameState {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		startGame = new Button("ressources/images/exitGame.png", "ressources/images/playNow.png", "ressources/images/exitGame.png", 150, 150);
 	}
 
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g) throws SlickException {
@@ -34,12 +37,26 @@ public class Game extends BasicGameState {
 		g.setBackground(Color.white);
 		g.drawString("x Koordinate: " + x, 805, 10);
 		g.drawString("y Koordinate: " + y, 805, 20);
+		startGame.draw();
 	}
 
+	boolean test = true; //kann bald wieder weg
 	public void update(GameContainer container, StateBasedGame game, int delta)	throws SlickException {
 		Input input = container.getInput();
 		x = Mouse.getX();
 		y = Mouse.getY();
+		
+		if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)){
+			if(startGame.isMouseOver(x, y)){
+				if(test){
+					startGame.setState(Button.DISABLED);
+					test = !test;
+				}else{
+					startGame.setState(Button.INACTIVE);
+					test = !test;
+				}
+			}
+		}
 		
 		if(input.isKeyPressed(Input.KEY_ESCAPE)){
 			container.exit();

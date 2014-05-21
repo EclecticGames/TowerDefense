@@ -1,11 +1,22 @@
 import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
 //muss wahrscheinlich später noch ein animatedButton gemacht werden, falls diese sich bewegen sollen
 public class Button {
 
-	private final int active = 0;
-	private final int inactive = 1;
-	private final int disabled = 2;
+	/**
+	 * The button is ACTIVE, when it is clicked.
+	 */
+	public final static int ACTIVE = 0;
+	/**
+	 * The button is INACTIVE, when nothing happens with it. For example when initiated.
+	 */
+	public final static int INACTIVE = 1;
+	/**
+	 * The button is DISABLED, when it can´t be clicked.
+	 */
+	public final static int DISABLED = 2;
+	
 	private int status;
 	
 	private Image[] buttonImages;
@@ -22,32 +33,51 @@ public class Button {
 	 */
 	public Button(Image active, Image inactive, Image disabled, int x, int y){
 		buttonImages = new Image[3];
-		buttonImages[this.active] = active;
-		buttonImages[this.inactive] = inactive;
-		buttonImages[this.disabled] = disabled;
+		buttonImages[ACTIVE] = active;
+		buttonImages[INACTIVE] = inactive;
+		buttonImages[DISABLED] = disabled;
 		width = inactive.getWidth();
 		height = inactive.getHeight();
-		status = this.inactive;
+		status = INACTIVE;
 		this.x = x;
 		this.y = y;
+	}
+	
+	/**
+	 * can throw a SlickException if path is incorrect
+	 * @param pathToActive
+	 * @param pathToInactive
+	 * @param pathToDisabled
+	 * @param x
+	 * @param y
+	 * @throws SlickException
+	 */
+	public Button(String pathToActive, String pathToInactive, String pathToDisabled, int x, int y) throws SlickException{
+		this(new Image(pathToActive), new Image(pathToInactive), new Image(pathToDisabled), x, y);
 	}
 	
 	public void draw(){
 		buttonImages[status].draw(x, y);
 	}
 	
-//	public boolean 
+	public boolean isMouseOver(int mouseX, int mouseY){
+		boolean isInX = (mouseX >= x) && (mouseX <= ( x + width ) );
+		boolean isInY = (mouseY <= Main.screenHeight - y) && (mouseY >= ( (Main.screenHeight - y) - height ) );
+		return isInX && isInY;
+	}
 	
-	/**
-	 * Set the button as disabled or not
-	 * @param disabled If true, the button is disabled, if false the button is inactive
-	 */
-	public void setDisabled(boolean isDisabled){
-		if(isDisabled){
-			status = disabled;
-		}else{
-			status = inactive;
-		}
+//	/**
+//	 * Set the button as disabled or not
+//	 * @param DISABLED If true, the button is disabled, if false the button is inactive
+//	 */
+//	public void setDisabled(boolean isDisabled){
+//		if(buttonImages[DISABLED] != null){
+//			status = isDisabled ? DISABLED : INACTIVE;
+//		}
+//	}
+	
+	public void setState(int status){
+		this.status = status;
 	}
 	
 }
